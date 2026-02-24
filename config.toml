@@ -1,0 +1,9 @@
+# Hugo configuration
+# update baseURL with your GitHub Pages URL
+
+baseURL = "https://graemenewlands.github.io/"
+languageCode = "en-us"
+title = "Graeme Newlands"
+theme = "ananke"
+
+# Additional settings can be added below

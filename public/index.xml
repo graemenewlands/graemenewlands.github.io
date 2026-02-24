@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome on Graeme Newlands</title>
+    <link>http://localhost:44275/</link>
+    <description>Recent content in Welcome on Graeme Newlands</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Feb 2026 22:55:41 -0800</lastBuildDate>
+    <atom:link href="http://localhost:44275/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:44275/posts/hello-world/</link>
+      <pubDate>Mon, 23 Feb 2026 22:55:41 -0800</pubDate>
+      <guid>http://localhost:44275/posts/hello-world/</guid>
+      <description>&lt;p&gt;Welcome to my first Hugo page! 🎉&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
