@@ -1,5 +1,7 @@
 ---
-title: "Welcome"
+title: "Graeme Newlands"
+featured_image: "/images/cover.jpeg"
+description: "Software engineering, systems architecture, and building production rule engines."
 ---
 
-This is a simple Hugo site generated for GitHub Pages.
+Welcome to my personal site and engineering notebook. Here you'll find write-ups on systems programming, compilers, rule engines, and open-source projects.

@@ -1,9 +1,14 @@
 # Hugo configuration
 # update baseURL with your GitHub Pages URL
 
-baseURL = "https://graemenewlands.github.io/"
+baseURL = "https://graemenewlands.com/"
 languageCode = "en-us"
 title = "Graeme Newlands"
 theme = "ananke"
 
-# Additional settings can be added below
+[params]
+  featured_image = "/images/cover.jpeg"
+  mainSections = ["posts"]
+  [params.ananke]
+    show_recent_posts = true
+

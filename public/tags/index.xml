@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on Graeme Newlands</title>
-    <link>http://localhost:44275/tags/</link>
-    <description>Recent content in Tags on Graeme Newlands</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <atom:link href="http://localhost:44275/tags/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Graeme Newlands</title><link>https://graemenewlands.com/tags/</link><description>Recent content in Tags on Graeme Newlands</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 24 Sep 2026 00:00:00 -0700</lastBuildDate><atom:link href="https://graemenewlands.com/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Compilers</title><link>https://graemenewlands.com/tags/compilers/</link><pubDate>Thu, 24 Sep 2026 00:00:00 -0700</pubDate><guid>https://graemenewlands.com/tags/compilers/</guid><description/></item><item><title>Concurrency</title><link>https://graemenewlands.com/tags/concurrency/</link><pubDate>Thu, 24 Sep 2026 00:00:00 -0700</pubDate><guid>https://graemenewlands.com/tags/concurrency/</guid><description/></item><item><title>Go</title><link>https://graemenewlands.com/tags/go/</link><pubDate>Thu, 24 Sep 2026 00:00:00 -0700</pubDate><guid>https://graemenewlands.com/tags/go/</guid><description/></item><item><title>OPS5</title><link>https://graemenewlands.com/tags/ops5/</link><pubDate>Thu, 24 Sep 2026 00:00:00 -0700</pubDate><guid>https://graemenewlands.com/tags/ops5/</guid><description/></item><item><title>Rete Algorithm</title><link>https://graemenewlands.com/tags/rete-algorithm/</link><pubDate>Thu, 24 Sep 2026 00:00:00 -0700</pubDate><guid>https://graemenewlands.com/tags/rete-algorithm/</guid><description/></item><item><title>Rule Engines</title><link>https://graemenewlands.com/tags/rule-engines/</link><pubDate>Thu, 24 Sep 2026 00:00:00 -0700</pubDate><guid>https://graemenewlands.com/tags/rule-engines/</guid><description/></item></channel></rss>
