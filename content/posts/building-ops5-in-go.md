@@ -88,6 +88,18 @@ Beyond the algorithmic core, building this project was an exercise in developer 
 
 ---
 
+## Live Interactive Demo: Conway's Game of Life in WebAssembly
+
+To test the engine's real-time capabilities in client-side interactive environments, I compiled the Go OPS5 runtime to WebAssembly and implemented John Conway's **Game of Life** as a pure declarative rule system—with zero imperative grid loops:
+
+👉 **[Launch Conway's Game of Life (OPS5 WASM)](/life/)**
+
+The application executes declarative production rules directly in your browser, managing neighbor votes, candidate tallying, cell births, and survivals within the Rete discrimination network. You can also inspect and live hot-reload active OPS5 rules directly from the in-browser inspector.
+
+Source code: [github.com/graemenewlands/go-ops5-apps](https://github.com/graemenewlands/go-ops5-apps)
+
+---
+
 ## What's Next?
 
 This project has been an immensely rewarding dive into rule compilers, memory layouts, and algorithmic optimization in Go. 

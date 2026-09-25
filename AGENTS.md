@@ -10,7 +10,7 @@
 
 ```
 .
-├── config.toml                     # Primary Hugo site configuration
+├── config.toml                     # Primary Hugo site configuration (menu, baseURL, theme params)
 ├── content/
 │   ├── _index.md                   # Homepage hero content & cover image configuration
 │   └── posts/
@@ -19,9 +19,15 @@
 ├── static/
 │   ├── CNAME                       # GitHub Pages custom domain (graemenewlands.com)
 │   ├── .nojekyll                   # Prevents GitHub Pages from running Jekyll
-│   └── images/
-│       ├── cover.jpeg              # Homepage hero header background image
-│       └── ops5-cover.jpeg         # Featured header image for OPS5 blog post
+│   ├── images/
+│   │   ├── cover.jpeg              # Homepage hero header background image
+│   │   └── ops5-cover.jpeg         # Featured header image for OPS5 blog post
+│   └── life/                       # Hosted Conway's Game of Life WebAssembly App
+│       ├── index.html              # Standalone Life UI with interactive rule inspector
+│       ├── style.css               # Life app dark theme styling
+│       ├── app.js                  # Canvas renderer, state loop, and Wasm bridge
+│       ├── wasm_exec.js            # Go 1.23 WebAssembly JS runtime glue
+│       └── main.wasm               # Compiled OPS5 Life engine binary (GOOS=js GOARCH=wasm)
 ├── themes/
 │   └── ananke/                     # Ananke theme submodule
 ├── .github/
@@ -39,13 +45,17 @@
   - `static/CNAME` contains `graemenewlands.com` ensuring that GitHub Action orphan deployments to `gh-pages` preserve the custom domain.
   - Live deployment verified serving HTTP 200 at `https://graemenewlands.com/`.
 
+- **Interactive WebAssembly Apps**:
+  - **Conway's Game of Life (`/life/`)**: Fully functional client-side Conway's Game of Life simulation powered by the `ops5` Rete pattern matching rule engine compiled to WebAssembly. Includes rule hot-reloading, pattern presets, step metrics, and toroidal wrapping. Source repository: [`graemenewlands/go-ops5-apps`](https://github.com/graemenewlands/go-ops5-apps).
+  - Main site navigation links directly to `/life/` alongside `/posts/`.
+
 - **Visual Assets**:
   - Homepage cover image: `static/images/cover.jpeg` (referenced in `content/_index.md` as `/images/cover.jpeg`).
   - OPS5 post image: `static/images/ops5-cover.jpeg` (referenced in `content/posts/building-ops5-in-go.md` as `/images/ops5-cover.jpeg`).
   - Duplicate/scratch image files have been cleaned up to maintain a lean repository footprint.
 
 - **Blog Content**:
-  - `content/posts/building-ops5-in-go.md`: Detailed engineering log covering the creation of [`graemenewlands/ops5`](https://github.com/graemenewlands/ops5), the Rete algorithm, and the OPT-1 through OPT-7 optimizations. Clearly marked as a *Work in Progress*.
+  - `content/posts/building-ops5-in-go.md`: Detailed engineering log covering the creation of [`graemenewlands/ops5`](https://github.com/graemenewlands/ops5), the Rete algorithm, and the OPT-1 through OPT-7 optimizations. Clearly marked as a *Work in Progress*, linking directly to the live `/life/` demo.
 
 ---
 
