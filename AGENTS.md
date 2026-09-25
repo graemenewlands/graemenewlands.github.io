@@ -15,6 +15,7 @@
 │   ├── _index.md                   # Homepage hero content & cover image configuration
 │   └── posts/
 │       ├── building-ops5-in-go.md  # Live blog post: OPS5 Rete rule engine implementation
+│       ├── conways-game-of-life-in-ops5.md # Live blog post: Declarative cellular automata in WebAssembly
 │       └── hello-world.md          # Initial placeholder post (draft = true)
 ├── static/
 │   ├── CNAME                       # GitHub Pages custom domain (graemenewlands.com)
@@ -56,6 +57,7 @@
 
 - **Blog Content**:
   - `content/posts/building-ops5-in-go.md`: Detailed engineering log covering the creation of [`graemenewlands/ops5`](https://github.com/graemenewlands/ops5), the Rete algorithm, and the OPT-1 through OPT-7 optimizations. Clearly marked as a *Work in Progress*, linking directly to the live `/life/` demo.
+  - `content/posts/conways-game-of-life-in-ops5.md`: Deep dive explaining how `go-ops5-apps/apps/life` leverages the `ops5` engine, the 5-stage declarative pipeline (emit votes, tally accumulator, evaluate, promote, quiescence), and Wasm integration.
 
 ---
 
