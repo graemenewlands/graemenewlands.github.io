@@ -35,7 +35,7 @@ An OPS5 interpreter is significantly lighter to implement than a C-Compiler, so 
 
 The project can be located here: https://github.com/graemenewlands/ops5. Building the project took roughly three weeks and held the following phases:
 
-- Tool acqusition
+- Tool acquisition
 - Specification materials
 - Initial Implementation
 - Specification and Documentation

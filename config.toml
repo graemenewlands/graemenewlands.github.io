@@ -14,15 +14,31 @@ theme = "ananke"
 
 [menu]
   [[menu.main]]
+    identifier = "blog"
     name = "Blog"
     url = "/posts/"
     weight = 1
   [[menu.main]]
-    name = "Game of Life (WASM)"
+    identifier = "ops5-apps"
+    name = "OPS5 Apps"
+    url = "#"
+    weight = 2
+  [[menu.main]]
+    parent = "ops5-apps"
+    identifier = "cassandra"
+    name = "Cassandra Simulator"
+    url = "/cassandra/"
+    weight = 1
+  [[menu.main]]
+    parent = "ops5-apps"
+    identifier = "life"
+    name = "Game of Life"
     url = "/life/"
     weight = 2
   [[menu.main]]
-    name = "Schema Synthesizer (WASM)"
+    parent = "ops5-apps"
+    identifier = "schema"
+    name = "Schema Synthesizer"
     url = "/schema/"
     weight = 3
 

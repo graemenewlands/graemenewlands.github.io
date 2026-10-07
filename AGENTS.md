@@ -17,12 +17,21 @@
 │       ├── building-ops5-in-go.md  # Live blog post: OPS5 Rete rule engine implementation
 │       ├── conways-game-of-life-in-ops5.md # Live blog post: Declarative cellular automata in WebAssembly
 │       └── hello-world.md          # Initial placeholder post (draft = true)
+├── layouts/
+│   └── _partials/
+│       └── site-navigation.html    # Navigation header override with OPS5 Apps dropdown menu
 ├── static/
 │   ├── CNAME                       # GitHub Pages custom domain (graemenewlands.com)
 │   ├── .nojekyll                   # Prevents GitHub Pages from running Jekyll
 │   ├── images/
 │   │   ├── cover.jpeg              # Homepage hero header background image
 │   │   └── ops5-cover.jpeg         # Featured header image for OPS5 blog post
+│   ├── cassandra/                  # Hosted Cassandra Protocol Dual-Ring Simulator App
+│   │   ├── index.html              # Standalone Cassandra UI with dual rings and WAN link toggle
+│   │   ├── style.css               # Cassandra app dark theme styling
+│   │   ├── app.js                  # SVG animator, state loop, and Wasm bridge
+│   │   ├── wasm_exec.js            # Go 1.23 WebAssembly JS runtime glue
+│   │   └── main.wasm               # Compiled OPS5 Cassandra engine binary (GOOS=js GOARCH=wasm)
 │   ├── life/                       # Hosted Conway's Game of Life WebAssembly App
 │   │   ├── index.html              # Standalone Life UI with interactive rule inspector
 │   │   ├── style.css               # Life app dark theme styling
@@ -53,9 +62,10 @@
   - Live deployment verified serving HTTP 200 at `https://graemenewlands.com/`.
 
 - **Interactive WebAssembly Apps**:
+  - **Cassandra Protocol Simulator (`/cassandra/`)**: Dual-ring distributed consistency and quorum simulator powered by OPS5 rules in WebAssembly. Simulates coordinator dispatch, hinted handoffs, read-repairs, live background query traffic, and interactive WAN link partition toggle. Source repository: [`graemenewlands/go-ops5-apps`](https://github.com/graemenewlands/go-ops5-apps).
   - **Conway's Game of Life (`/life/`)**: Fully functional client-side Conway's Game of Life simulation powered by the `ops5` Rete pattern matching rule engine compiled to WebAssembly. Includes rule hot-reloading, pattern presets, step metrics, and toroidal wrapping. Source repository: [`graemenewlands/go-ops5-apps`](https://github.com/graemenewlands/go-ops5-apps).
   - **Schema & Materialized View Synthesizer (`/schema/`)**: Interactive relational database schema modeler and materialized view generator powered by OPS5 forward-chaining rules in WebAssembly. Features an interactive E-R diagram (Chinook and Northwind schemas), active selection tray, foreign-key join path inference, alias disambiguation, SQL generation, and live sample data preview. Source repository: [`graemenewlands/go-ops5-apps`](https://github.com/graemenewlands/go-ops5-apps).
-  - Main site navigation links directly to both `/life/` and `/schema/` alongside `/posts/`.
+  - Main site navigation organizes apps cleanly under an **OPS5 Apps** dropdown menu (`/cassandra/`, `/life/`, `/schema/`) alongside `/posts/`.
 
 - **Visual Assets**:
   - Homepage cover image: `static/images/cover.jpeg` (referenced in `content/_index.md` as `/images/cover.jpeg`).
