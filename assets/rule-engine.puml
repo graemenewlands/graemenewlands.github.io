@@ -1,0 +1,58 @@
+@startuml
+left to right direction
+
+skinparam roundcorner 8
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 13
+
+skinparam rectangle {
+    BackgroundColor #F8F9FA
+    BorderColor #495057
+    BorderThickness 1.5
+}
+
+skinparam storage {
+    BackgroundColor #E7F5FF
+    BorderColor #1971C2
+    BorderThickness 1.5
+}
+
+skinparam package {
+    BackgroundColor #FFF9DB
+    BorderColor #F59F00
+    BorderThickness 1.5
+}
+
+' Inputs pinned to the Left
+package "Inputs / System Memory" as Inputs {
+    storage "Working / Data Memory\n(WMEs / Facts)" as DataMemory
+    storage "Production Memory\n(Rules / Knowledge Base)" as ProductionMemory
+    DataMemory -[hidden]down-> ProductionMemory
+}
+
+' Recognize-Act Cycle pinned to the Right
+package "Recognize-Act Cycle" as Cycle {
+    rectangle "1. Match" as Match
+    collections "Conflict Set\n(Rule Instantiations)" as ConflictSet
+    rectangle "2. Select\n(Conflict Resolution)" as Select
+    rectangle "3. Execute / Act\n(RHS Evaluation)" as Execute
+
+    Match -down-> ConflictSet : Activations
+    ConflictSet -down-> Select : Candidate Rules
+    Select -down-> Execute : Chosen Instantiation
+    Execute -up-> Match : Next Cycle
+}
+
+' Explicit layout anchor to force Inputs strictly to the left of Cycle
+Inputs -[hidden]right-> Cycle
+
+' Forward flow: Inputs feed Match (Left to Right)
+DataMemory --> Match : Facts / WMEs
+ProductionMemory --> Match : LHS Conditions
+
+' Feedback loops: Act updates Memory (Right to Left)
+DataMemory <-- Execute : Assert / Modify / Retract
+ProductionMemory <-- Execute : Dynamic Rule Generation
+
+@enduml

@@ -17,21 +17,24 @@ The motivation of this personal initiative was this post from Anthropic: [Buildi
 
 One fact from the C-Compiler post stuck out for me, that the cost of the compiler was $20,000. This is now low compared to the Navier-Stokes investment, but significantly out of range for a mere mortal such as myself. My question was this: How much and what impact could I get with a budget more like $20 per month!
 
-OPS5 is a `Lisp` based interpreted language in which it is possible to define working memory elements to represent facts, production rules that may produce other facts, and a conflict resolution system that can provide an order when several rules are being satisfied that may execute at once. Facts are represented as matched facts within an alphanetwork and joined with nodes in a Beta network to determine what state to reach next in the rule evaluation.
-
-Rules Engines in the enterprise have been generally passed over due to their complexity, however, you should notice that there has been significant interest. One of the reference papers about [Business Rules](https://www.businessrulesgroup.org/first_paper/BRG-whatisBR_3ed.pdf) was written with EF Codd. There are a number of example systems we've seen such as [Drools](https://tools.jboss.org/features/drools.html) and [Jess](https://www.nected.ai/us/blog-us/jess-rules-engine), however, none in a central role providing a true logical middle tier. AI provides a major unblocker for managing the complexity of an enterprise, and a Rule Engine a potential governance framework and promising solutions for some other difficult to manage problems within an enterprise:
-
-- most enterprise systems are executing relatively simple logic - variable defaults, enrichment from lookup table, application of a formula. The complexity we see in enterprise systems typically comes down to logic being spread over multiple disjoint systems either resulting in the inability to query across domain boundaries or problems where information is propagated across domain boundaries without consideration of the new rules.
-- logic in enterprise systems sometimes exists when implemented through trigger mechanism in a database. This logic can be very difficult to unwind due to the complexity of foreign key constraints. OPS5 systems enable very good control in joins, and join failures. In fact, a relational schema can be completely externalized from a datastore if required.
-- when applications extract views of data, the view does not contain the business rules nor the underlying relationships of the system that delivered the view.
-- using AI is not feasible in the majority of realtime and even batch and stream processing requirements. This is because the amount of time taken to solve a problem is not known at the point of execution. OPS5 can evaluate a rule problem in a deterministic time.
-- While we see AI as fantastically capable, we are unable to truly constrain its time, nor its costs, nor gain good estimates for the costs associated with system transformations it enables. We also can't guarantee that it might not ... do something terrible if it misunderstands the goals.
-- being able to separate join logic from DAO logic enables architecture separation for certain problem domains, some significant ones being true bitemporality, others being schema transformations such as denormalization or normalization.
-- The lineage problem in enterprises is difficult to comprehensively solve. When Business Rules are applied to ingress datasets, ideally we would like to know what version of the business rules was used to create that datapoint, and what the decision logic was. This typically is lost, and has to be painstakingly recreated when required.
-
-When I worked originally with rule systems, I did not have the opportunity to fully investigate the possibility of integrating alpha memories with database systems, for which at the time I felt there was a lot of potential. Now, armed with this new super power, I decided to delve in...
-
 An OPS5 interpreter is significantly lighter to implement than a C-Compiler, so I chose that to investigate the impact of AI on Enterprise Systems development.
+
+OPS5 is a `Lisp` based interpreted language in which it is possible to define working memory elements to represent facts, production rules that may produce other facts, and a conflict resolution system that can provide an order when several rules are being satisfied that may execute at once. Facts are represented as matched facts within an Alpha network and joined with nodes in a Beta network to determine what state to reach next in the rule evaluation.
+
+![OPS5 Recognize-Act Cycle](/images/rule-engine.png)
+*Figure 1: A Rule Engine Abstract - A rule engine may be stateless, or stateful depending on how the memories are managed*
+
+Rules Engines in the enterprise have been generally passed over due to their complexity, however, you should notice that there has been significant interest. One of the reference papers about [Business Rules](https://www.businessrulesgroup.org/first_paper/BRG-whatisBR_3ed.pdf) was written with EF Codd. There are a number of example systems we've seen such as [Drools](https://tools.jboss.org/features/drools.html) and [Jess](https://www.nected.ai/us/blog-us/jess-rules-engine), however, none in a central role providing a true logical middle tier. Rule engines provide major unblocker for managing the complexity of an enterprise, you may have an interest in Rule Engines as a part of your workflow if some of the following resonate:
+
+- most enterprise systems are executing relatively simple logic - variable defaults, enrichment from lookup table, application of a formula. The complexity we see in enterprise systems typically comes down to logic being spread over multiple disjoint systems either resulting in the inability to query across domain boundaries or problems where information is propagated across domain boundaries without consideration of the new rules. Rule engines provide a logic tier that unifies disjoint systems.
+- when applications extract views of data, the view does not contain the business rules nor the underlying relationships of the system that delivered the view. A view complemented with rules fully describes the relationships of cells within the resultset. Rule engines enable a connection between a view and a ruleset which may be passed between processes.
+- using (nondeterministic) AI is not feasible in the majority of realtime and even batch and stream processing requirements. This is because the amount of time taken to solve a problem is not known at the point of execution. OPS5 can evaluate a rule problem in a deterministic time.
+- Consider the following simple architecture: AI manages Working Memory elements within a Rule Engine. Production Rules constrain the elements, and provide a report if an attempt is made to perform a bad move. Here is a very simple Governance Framework! A Rule Engine provides rules for both human and machine operators that cannot be circumvented.
+- being able to separate join logic from DAO logic enables architecture separation for certain problem domains, some significant ones being true bitemporality, others being schema transformations such as denormalization or normalization.
+- The lineage problem in enterprises is difficult to comprehensively solve. When Business Rules are applied to ingress datasets, ideally we would like to know what version of the business rules was used to create that datapoint, and what the decision logic was. This typically is lost, and has to be painstakingly recreated when required. We can snapshot a full rule-engine such that we can associate transformantions with the exact business logic at the time decisions were made.
+- logic in enterprise systems sometimes exists when implemented through trigger mechanism in a database. This logic can be very difficult to unwind due to the complexity of foreign key constraints. OPS5 systems enable very good control in joins, and join failures. In fact, a relational schema can be completely externalized from a datastore if required.
+
+## Implementation
 
 The project can be located here: https://github.com/graemenewlands/ops5. Building the project took roughly three weeks and held the following phases:
 
@@ -66,9 +69,15 @@ The [first commit](https://github.com/graemenewlands/ops5/commit/e6dc9344ab11f45
 
 After this, the next week of evenings was spent working on detail. OPS5 instructions like cbind, bind, a CLI, support for vectors, debugging instructions, print, tabto, crlf, multivalued objects, literalize, visualization of the rete network, (modify)ing working memory elements, openfile... There was a lot missing. None of this was suggested by the agent, but was supplied by prompt. 
 
+![Hello Alice](/images/hello-alice-console.png)
+*Fig 2: Running the interactive cli for the ops5 engine via the console*
+
 The second week was spent:
 - building out features for the OPS5 interpreter. One was `compute` to allow efficient aggregations over working memory elements.
 - implementing efficiency gains for the engine.
+
+![OPS5 Working Memory Visualization](/images/ancestors.png)
+*Figure 3: Visualizing the Initial State of integration test [tests/integration/2_5_2.ops5](https://github.com/graemenewlands/ops5/blob/main/tests/integration/2_5_2.ops5)*
 
 ## Specification and Documentation
 
